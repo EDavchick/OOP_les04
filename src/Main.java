@@ -16,13 +16,33 @@ public class Main {
         studentGroup.addStudent(student04);
         studentGroup.addStudent(student05);
 
-        StudentGroupService service = new StudentGroupService(studentGroup);
+        StudentGroupService studentGroupService = new StudentGroupService(studentGroup);
 //        for(Student student : service.getSortedStudentGroup()) System.out.println(student);
 
         // сейчас в интерфейс UserView<Student> мы передаем реализацию метода из StudentView
-        UserView<Student> view = new StudentView();
-        view.sendOnConsole(studentList);  // вывод в консоль
+        UserView<Student> studentUserView = new StudentView();
+        studentUserView.sendOnConsole(studentList);  // вывод в консоль
         System.out.println();
-        view.sendOnConsole(service.getSortedStudentGroupByFIO()); // сортировка по ФИО
+        studentUserView.sendOnConsole(studentGroupService.getSortedStudentGroupByFIO()); // сортировка по ФИО
+        System.out.println();
+
+        Teacher teacher01 = new Teacher("bbb", "bca", "aaa", 1);
+        Teacher teacher02 = new Teacher("aaa", "bca", "aaa", 5);
+        Teacher teacher03 = new Teacher("ddd", "bca", "aaa", 3);
+        Teacher teacher04 = new Teacher("fff", "bca", "aaa", 7);
+        Teacher teacher05 = new Teacher("ccc", "bca", "aaa", 2);
+        List<Teacher> teacherList = new ArrayList<>();
+        TeacherGroup teacherGroup = new TeacherGroup(teacherList);
+        teacherGroup.addTeacher(teacher01);
+        teacherGroup.addTeacher(teacher02);
+        teacherGroup.addTeacher(teacher03);
+        teacherGroup.addTeacher(teacher04);
+        teacherGroup.addTeacher(teacher05);
+
+        TeacherGroupService teacherGroupService = new TeacherGroupService(teacherGroup);
+        UserView<Teacher> teacherUserView = new TeacherView();
+        teacherUserView.sendOnConsole(teacherList); // вывод в консоль
+        System.out.println();
+        teacherUserView.sendOnConsole(teacherGroupService.getSortedTeacherGroup()); // сортировка по ФИО
     }
 }
